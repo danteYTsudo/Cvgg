@@ -1,0 +1,26 @@
+name: Godot Android Export
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Export Godot project
+        uses: firebelley/godot-export@v2
+        with:
+          godot_version: '4.3'
+          export_preset: 'Android'
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: Android-Build
+          path: '*.apk'
+
+ 
